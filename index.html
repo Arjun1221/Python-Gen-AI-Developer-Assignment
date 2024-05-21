@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response Citations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Response Citations</h1>
+        {% for result in results %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Response ID: {{ result.id }}</h5>
+                <p class="card-text">{{ result.response }}</p>
+                <h6>Citations:</h6>
+                <ul>
+                    {% for citation in result.citations %}
+                    <li>
+                        ID: {{ citation.id }}
+                        {% if citation.link != 'N/A' %}
+                        - <a href="{{ citation.link }}" target="_blank">{{ citation.link }}</a>
+                        {% else %}
+                        - No Link
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
